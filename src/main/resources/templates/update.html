@@ -8,9 +8,13 @@
 <body>
   <div th:replace="~{fragments :: header}"></div>
 <br>
-  <h2>User Create</h2>
-  <form action="/create" th:object="${user}" method="post">
+  <h2>User Update</h2>
+  <form action="/update" th:object="${user}" method="post">
     <table class="user">
+      <tr>
+        <th>Id:</th>
+        <td><input type="text" th:field="*{idUser}" readonly></td>
+      </tr>
       <tr>
         <th>First Name:</th>
         <td><input type="text" th:field="*{firstName}" required></td>
@@ -27,16 +31,12 @@
         </td>
       </tr>
       <tr>
-        <th>Password:</th>
-        <td><input type="password" th:field="*{password}" required></td>
-      </tr>
-      <tr>
         <th>Birth:</th>
         <td><input type="date" th:field="*{birth}" required></td>
       </tr>
       <tr>
           <td colspan="2">
-              <input type="submit" value="Create">
+              <input type="submit" value="Update">
           </td>
       </tr>
     </table>
