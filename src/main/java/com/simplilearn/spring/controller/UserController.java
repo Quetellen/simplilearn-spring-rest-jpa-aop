@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.simplilearn.spring.bean.User;
+import com.simplilearn.spring.jpa.User;
 import com.simplilearn.spring.service.UserService;
 
 

@@ -1,18 +1,47 @@
-package com.simplilearn.spring.bean;
+package com.simplilearn.spring.jpa;
+import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class User {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
+@Entity 
+@Table(name="USER")
+public class User implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ID_USER")
     int idUser;
+	
+	@Column(name="USERNAME")
     String username;
+	
+	@Column(name="PASSWORD")
     String password;
+	
+	@Column(name="FIRST_NAME")
     String firstName;
+	
+	@Column(name="LAST_NAME")
     String lastName;
     
     @DateTimeFormat(pattern="yyyy-MM-dd")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="BIRTH")
     Date birth;
+    
+    @Column(name="STATUS")
     String status;
 
     public User() {
@@ -78,7 +107,4 @@ public class User {
 				"User [idUser=%s, username=%s, password=%s, firstName=%s, lastName=%s, birth=%s, status=%s]", idUser,
 				username, password, firstName, lastName, birth, status);
 	}
-
-
-
 }
