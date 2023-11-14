@@ -18,96 +18,48 @@ import org.springframework.web.servlet.ModelAndView;
 import com.simplilearn.spring.jpa.User;
 import com.simplilearn.spring.service.UserService;
 
-
 @Controller
 public class ShowController {
 
-    final Logger logger = LoggerFactory.getLogger(this.getClass());
+	final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @GetMapping("/")
-    String showIndex() {
+	@GetMapping("/")
+	String showIndex() {
 
-        logger.debug("Showing Index...");
+		logger.debug("Showing Index...");
 
-        return "index";
-    }
+		return "index";
+	}
 
-    @GetMapping("/list")
-    String list() {
+	@GetMapping("/list")
+	String list() {
 
-        logger.debug("Showing Users...");
+		logger.debug("Showing List...");
 
-        return "list";
-    }
+		return "list";
+	}
 
-    @GetMapping("/create")
-    String showCreate(User user) {
+	@GetMapping("/create")
+	String showCreate(User user) {
 
-        logger.debug("Showing Create...");
+		logger.debug("Showing Create...");
 
-        return "create";
-    }
-/*
-    @PostMapping("/create")
-    String createUser(User user, BindingResult result) {
+		return "create";
+	}
 
-        logger.debug("Creating User... {}",user);
+	@GetMapping("/update/{id}")
+	ModelAndView showUpdate(@PathVariable int id) {
 
-        this.validateUsername(user, result);
+		logger.debug("Showing Update... UserID: {}", id);
 
-        if (result.hasErrors()) {
-            return "create";
-        }
+		return new ModelAndView("update", "id", id);
+	}
 
+	@GetMapping("/search")
+	String showSearch() {
 
-        return "redirect:/list";
-    }
+		logger.debug("Showing Search...");
 
-    @GetMapping("/update/{id}")
-    ModelAndView showUpdate(@PathVariable int id) {
-
-        logger.debug("Showing Update... UserID: {}", id);
-
-        return new ModelAndView("update","user",user);
-    }
-
-    @PostMapping("/update")
-    String updateUser(User user, BindingResult result) {
-
-        logger.debug("Updating User... {}",user);
-
-
-        if (result.hasErrors()) {
-            return "update";
-        }
-
-
-        return "redirect:/list";
-    }
-
-    @GetMapping("/delete/{id}")
-    String deleteUser(@PathVariable int id) {
-
-        logger.debug("Deleting User... UserID: {}", id);
-
-
-        return "redirect:/list";
-    }
-
-    @GetMapping("/search")
-    String showSearch() {
-
-        logger.debug("Showing Search...");
-
-        return "search";
-    }
-
-    @PostMapping("/search")
-    ModelAndView searchUser(@RequestParam int id) {
-    	
-    	logger.debug("Searching User... UserID: {}", id);
-    	
-
-    	return new ModelAndView("table","user",user);
-    }*/
+		return "search";
+	}
 }

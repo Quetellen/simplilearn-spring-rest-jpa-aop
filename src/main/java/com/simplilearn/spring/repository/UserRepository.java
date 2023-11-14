@@ -11,6 +11,5 @@ public interface UserRepository extends JpaRepository<User,Integer>{
 	
 	//ID_USER!=? AND UPPER(USERNAME) = UPPER(?) -> we turned this especial sql statement into a method
 	
-	public User findByIdUserNotAndUsernameIgnoreCase(int idUser, String username);
-
+    public User findByIdUserNotAndUsernameIgnoreCase(int idUser, String username);
 }

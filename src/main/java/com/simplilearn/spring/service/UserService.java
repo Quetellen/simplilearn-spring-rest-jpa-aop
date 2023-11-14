@@ -27,7 +27,7 @@ public class UserService {
     public void createUser(User user) {
 
         this.validateUser(user);
-        
+
         user.setStatus("A");
         this.userRepository.save(user);
     }
@@ -36,32 +36,34 @@ public class UserService {
         return this.userRepository.findByIdUserNotAndUsernameIgnoreCase(user.getIdUser(), user.getUsername());
     }
 
+
     public User findUser(int idUser) {
-    	return this.userRepository.findById(idUser).orElse(null);
+        return this.userRepository.findById(idUser).orElse(null);
     }
 
     public void updateUser(User user) {
 
         this.validateUser(user);
-        
+
         this.userRepository.findById(user.getIdUser())
-                             .ifPresent(u -> {
-                            	 u.setFirstName(user.getFirstName());
-                            	 u.setLastName(user.getLastName());
-                            	 u.setUsername(user.getUsername());
-                            	 u.setBirth(user.getBirth());
-                            	this.userRepository.save(u);
-                             });
+                              .ifPresent(u -> {
+                                  u.setFirstName(user.getFirstName());
+                                  u.setLastName(user.getLastName());
+                                  u.setUsername(user.getUsername());
+                                  u.setBirth(user.getBirth());
+
+                                  this.userRepository.save(u);
+                              });
     }
 
     public void deleteUser(int idUser) {
-    	this.userRepository.deleteById(idUser);
+        this.userRepository.deleteById(idUser);
     }
-    
+
     private void validateUser(User user) {
-        if (user.getFirstName().isEmpty() || 
-            user.getLastName().isEmpty() || 
-            user.getUsername().isEmpty()){
+        if (user.getFirstName().isEmpty() ||
+            user.getLastName().isEmpty() ||
+            user.getUsername().isEmpty()) {
             throw new RuntimeException("Invalid User Data: " + user);
         }
 

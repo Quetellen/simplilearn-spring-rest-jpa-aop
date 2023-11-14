@@ -7,12 +7,24 @@
 </head>
 <body>
   <div th:replace="~{fragments :: header}"></div>
-<br>
+  <br>
   <h2>User Search</h2>
-  <form action="/search" method="post">
-    User Id: <input type='text' name='id' required>
-    <br><br>
-    <input type='submit' value='Search'>
+  <form>
+    <table>
+      <tr>
+        <th>User Id:</th>
+        <td><input type="text" id="id"></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input type="button" id="search" value="Search">
+        </td>
+      </tr>
+    </table>
   </form>
+  <div class="table">
+  </div>
+  <div th:replace="~{fragments :: scripts}"></div>
+  <script th:src="@{/js/search.js}"></script>
 </body>
 </html>
